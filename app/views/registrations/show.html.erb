@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student id card no:</strong>
+  <%= @registration.student_id_card_no %>
+</p>
+
+<p>
+  <strong>Student name:</strong>
+  <%= @registration.student_name %>
+</p>
+
+<p>
+  <strong>Semester no:</strong>
+  <%= @registration.semester_no %>
+</p>
+
+<p>
+  <strong>Subject no 1:</strong>
+  <%= @registration.subject_no_1 %>
+</p>
+
+<p>
+  <strong>Subject no 2:</strong>
+  <%= @registration.subject_no_2 %>
+</p>
+
+<p>
+  <strong>Subject no 3:</strong>
+  <%= @registration.subject_no_3 %>
+</p>
+
+<p>
+  <strong>Subject no 4:</strong>
+  <%= @registration.subject_no_4 %>
+</p>
+
+<p>
+  <strong>Subject no 5:</strong>
+  <%= @registration.subject_no_5 %>
+</p>
+
+<%= link_to 'Edit', edit_registration_path(@registration) %> |
+<%= link_to 'Back', registrations_path %>

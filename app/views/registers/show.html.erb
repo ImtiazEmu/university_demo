@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Semester no:</strong>
+  <%= @register.semester_no %>
+</p>
+
+<p>
+  <strong>Subject name:</strong>
+  <%= @register.subject_name %>
+</p>
+
+<p>
+  <strong>Student id card:</strong>
+  <%= @register.student_id_card %>
+</p>
+
+<%= link_to 'Edit', edit_register_path(@register) %> |
+<%= link_to 'Back', registers_path %>

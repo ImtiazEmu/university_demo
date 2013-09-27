@@ -1,0 +1,28 @@
+<%= form_for(@subject) do |f| %>
+  <% if @subject.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
+
+      <ul>
+      <% @subject.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :subject_name %><br>
+    <%= f.text_field :subject_name %>
+  </div>
+  <div class="field">
+    <%= f.label :semester_no %><br>
+    <% Semester.count.times do |i| %>
+        <%= label_tag i+1 %>:
+        <%= check_box_tag "subject[semester_no][]", i+1 %> <br />
+    <% end %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

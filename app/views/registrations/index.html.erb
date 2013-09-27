@@ -1,0 +1,41 @@
+<h1>Listing registrations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student id card no</th>
+      <th>Student name</th>
+      <th>Semester no</th>
+      <th>Subject no 1</th>
+      <th>Subject no 2</th>
+      <th>Subject no 3</th>
+      <th>Subject no 4</th>
+      <th>Subject no 5</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @registrations.each do |registration| %>
+      <tr>
+        <td><%= registration.student_id_card_no %></td>
+        <td><%= registration.student_name %></td>
+        <td><%= registration.semester_no %></td>
+        <td><%= registration.subject_no_1 %></td>
+        <td><%= registration.subject_no_2 %></td>
+        <td><%= registration.subject_no_3 %></td>
+        <td><%= registration.subject_no_4 %></td>
+        <td><%= registration.subject_no_5 %></td>
+        <td><%= link_to 'Show', registration %></td>
+        <td><%= link_to 'Edit', edit_registration_path(registration) %></td>
+        <td><%= link_to 'Destroy', registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Registration', new_registration_path %>

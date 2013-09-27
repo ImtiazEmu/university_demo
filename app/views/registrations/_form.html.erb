@@ -1,0 +1,39 @@
+<%= form_for(@registration) do |f| %>
+    <% if @registration.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@registration.errors.count, "error") %> prohibited this registration from being saved:</h2>
+
+          <ul>
+            <% @registration.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :student_id_card_no %>
+      <br>
+      <%= f.text_field :student_id_card_no %>
+    </div>
+    <div class="field">
+      <%= f.label :student_name %>
+      <br>
+      <%= f.text_field :student_name %>
+    </div>
+    <div class="field">
+      <%= f.label :semester_no %>
+      <br>
+      <%= f.select :semester_no, Registration::SEMESTER_TYPES,
+                   prompt: 'Select a Semester' %>
+    </div>
+
+    <div class="field">
+      <div class="dynamic_subject">
+        </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

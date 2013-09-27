@@ -1,0 +1,1 @@
+$(".dynamic_subject").html('<%= label_tag :subjects %>:<br><% @options.each do |i| %><%= label_tag i %>:<%= check_box_tag "register[subject_name][]", i %> <br/><% end %>');
