@@ -27,18 +27,22 @@ class SubjectsController < ApplicationController
   # POST /subjects
   # POST /subjects.json
   def create
-  # @subject = Subject.new(subject_params)
+  @subject = Subject.new(subject_params)
 
+  subject_nam = params[:subject][:subject_name]
+  semester_no = params[:subject][:semester_no]
 
-    semester_no = params[:subject][:semester_no]
-    subject_name = params[:subject][:subject_name]
+  #semester_nos = params[:subject][:subject_name]
 
     err = false
-    semester_no.each do |i|
-      @subject = Subject.new({semester_no: i, subject_name: subject_name})
-      unless @subject.save
+    unless semester_nos.blank?
+    semester_no.each do |semester|
+      @subjects = Subject.new({semester_no: semester, subject_name: subject_nam})
+      unless @subjects.save
         err = true
       end
+    end
+      else err = true
     end
 
 
@@ -57,13 +61,15 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update
+
+    @subject = Subject.find(params[:id])
     semester_no = params[:subject][:semester_no]
-    subject_name = params[:subject][:subject_name]
+    subject_name = @subject.subject_name
 
     err = false
-    semester_no.each do |i|
-      unless Subject.exists?({semester_no: i, subject_name: subject_name})
-        @subject = Subject.new({semester_no: i, subject_name: subject_name})
+    semester_no.each do |semester|
+      unless Subject.exists?({semester_no: semester, subject_name: subject_name})
+        @subject = Subject.new({semester_no: semester, subject_name: subject_name})
         unless @subject.save
           err = true
         end
@@ -99,7 +105,7 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.require(:subject).permit(:subject_name, params[:semester_no])
+      params.require(:subject).permit(:subject_name,{:semester_no => []})
     end
 end
 

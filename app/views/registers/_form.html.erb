@@ -37,15 +37,37 @@
 <% end %>
 
 <script type="text/javascript">
-  $(function(){
-  $("#register_semester_no").change(function(){
-  var url = '/semesters/'+$(this).val()+'/get_drop_down_options';
-  //$("#subject_name").removeOption(/./)
-  $.get(url, function(data) {
-  //$('#subject_name').addOption(data, false);
-  //            console.log(data);
-  });
-  });
-  });
-  <%= render :partial=>"shared/drop_down_options" %>
+    $(function () {
+        $("#register_semester_no").change(function () {
+            user_id = $("#register_student_id_card").val();
+            //console.log(user_id);
+            var url = '/semesters/' + $(this).val() + '/get_drop_down_options?user_id='+user_id;
+            //$("#subject_name").removeOption(/./)
+            $.get(url, function (data) {
+                //$('#subject_name').addOption(data, false);
+                //            console.log(data);
+            });
+        });
+    });
+
+    /*
+    $(document).on('click',"#register_subject_name_", function(){
+        user_id = $("#register_student_id_card").val();
+        semestr_id = $("#register_semester_no").val();
+        flag = false
+        if($(this).prop('checked')){
+            flag = true;
+            //var url = '/semesters/' + $(this).attr('name') + '/get_drop_down_options?user_id & semestr_id & flag ='+user_id + semestr_id + flag;
+            //console.log('Add: '+$(this).attr('name'));
+        }
+        else{
+            var url = '/semesters/' + $(this).attr('name') + '/get_drop_down_options?user_id & semestr_id & flag='+user_id + semestr_id + flag;
+            $.get(url, function (data) {
+                //            console.log(data);
+            });
+            //console.log('Delete: '+$(this).attr('name'));
+        }
+    });  */
+
+    <%= render :partial=>"shared/drop_down_options" %>
 </script>

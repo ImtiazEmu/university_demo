@@ -1,5 +1,9 @@
 University::Application.routes.draw do
-  resources :registers
+  resources :registers do
+    member do
+      get :delete_data
+    end
+  end
 
   resources :registrations
 

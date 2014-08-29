@@ -63,12 +63,21 @@ class SemestersController < ApplicationController
   end
 
   def get_drop_down_options
+
     val = params[:id]
     subject = Subject.find_all_by_semester_no(val)
     #Use val to find records
-    @options = subject.collect{|x| "#{x.subject_name}"}
-    #@options = subject.collect{|x| "<input class=\"dynamic_subject\" id=\"subject_name\" name=\"#{x.subject_name}\" type=\"checkbox\" value=\"#{x.subject_name}\"/>" }
-    #render :text => "{#{options.join(",")}}"
+    @subject_options = subject.collect{|x| "#{x.subject_name}"}
+    id_card = params[:user_id]
+    @previous_subjects = []
+    register = Register.find_all_by_semester_no(val)
+    @register = register
+    @register.each do |element|
+      if element.student_id_card == id_card
+        @subject_options.delete(element.subject_name)
+        @previous_subjects.push(element.subject_name)
+      end
+    end
 
   end
 
